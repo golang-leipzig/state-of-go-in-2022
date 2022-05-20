@@ -14,7 +14,7 @@ TBD.
 * Co-Hosting [Leipzig Gophers](https://golangleipzig.space/)
 * ...
 
-![](https://golangleipzig.space/leipzig-gopher.png)
+![](static/leipzig-gopher.png)
 
 ## Change to the language
 
