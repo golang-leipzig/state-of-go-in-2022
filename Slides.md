@@ -11,7 +11,9 @@ TBD.
 
 ## About Us
 
-* Co-Hosting [Leipzig Gophers](https://golangleipzig.space/)
+* co-hosting [Leipzig Gophers](https://golangleipzig.space/) since 2019
+* 28+ events hosted, input presentations, code walkthroughs, discussions, ...
+* 350 members on meetup, the pandemic brought us a truly international audience
 * ...
 
 ![](static/leipzig-gopher.png)
