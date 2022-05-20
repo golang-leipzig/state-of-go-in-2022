@@ -7,7 +7,14 @@ Meetup](https://www.meetup.com/LE-software-craft-community/), date and time:
 TBD.
 
 * Andreas Linz
-* Martin Czygan (https://golangleipzigs.space)
+* Martin Czygan
+
+## About Us
+
+* Co-Hosting [Leipzig Gophers](https://golangleipzig.space/)
+* ...
+
+![](https://golangleipzig.space/leipzig-gopher.svg)
 
 ## Change to the language
 
