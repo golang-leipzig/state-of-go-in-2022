@@ -1,6 +1,6 @@
 # State of Go in 2022
 
-> What changed in the past few years?
+> What's new (since Go [1.14](https://go.dev/doc/devel/release#go1.14))?
 
 Talk at [Leipzig Software Craft Meetup](https://www.meetup.com/LE-software-craft-community/), date and time: TBD.
 
