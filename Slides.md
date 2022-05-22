@@ -60,8 +60,7 @@ $ git shortlog -s -n | wc -l
 ```
 
 From a [git-of-theseus](https://github.com/erikbern/git-of-theseus) analysis
-(as of 0a1a092c4b56a1d4033372fbd07924dad8cbb50b):
-
-Authors (top 20 plus others); code age; extensions.
+(as of 0a1a092c4b56a1d4033372fbd07924dad8cbb50b): authors (top 20 plus others),
+code age, extensions (move from [C to Go](https://go.dev/doc/go1.5#c) in 1.5):
 
 ![Various plots generated with git-of-theseus](static/theseus/stats_combined.png)
