@@ -6,15 +6,18 @@ Talk at [Leipzig Software Craft Meetup](https://www.meetup.com/LE-software-craft
 
 ## Outline
 
-* Go modules
-* Generics
-* Embedding
-* ...
+> max 45 minutes (?)
+
+* Go modules (10)
+* Generics (10)
+* Embedding (as part of stdlib changes) (5)
+* Tools (e.g. fuzzing) (5)
+* Use cases, users, ecosystem (e.g. adoption, popularity, mainstream popularity, [hacker-howto](http://www.catb.org/~esr/faqs/hacker-howto.html), ... (15)
 
 ## TODO(martin)
 
-* try to use [git-of-theseus](https://github.com/erikbern/git-of-theseus) on go repo
-* word cloud of word in release notes, maybe
+* [x] try to use [git-of-theseus](https://github.com/erikbern/git-of-theseus) on go repo
+* [ ] find some numbers on adoption and bigger corporate users
 
 ## TODO(andreas)
 

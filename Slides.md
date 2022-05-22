@@ -20,9 +20,33 @@ TBD.
 
 ## Change to the language
 
-![](static/changes-combined.png)
+```shell
+$ git clone https://github.com/golang/website.git
+$ grep -l "There are no.*changes to the language." website/_content/doc/go1.1*html
+_content/doc/go1.10.html
+_content/doc/go1.11.html
+_content/doc/go1.12.html
+_content/doc/go1.15.html
+_content/doc/go1.16.html
+```
 
-* not that much to see here; thanks! any questions?
+5 out of the 9 past releases (Go 1.10, 2018-02-16 to 1.18, 2022-03-15) do not
+contain any changes to the language.
+
+The single biggest change to the language is the addition of generic types in
+Go 1.18. All other changes have been small enhancements (like number literals,
+changes in `unsafe`, ...).
+
+## So, what changed?
+
+We want to highlight a few changes and how they affect everyday Go development:
+
+* move to **Go modules** for dependency management
+* introduction of **generic types**
+* **standard library** additions: `hash/maphash` (1.14), `time/tzdata` (1.15), `embed` (1.16), `debug/buildinfo` (1.18), `net/netip` (1.18)
+* **tools** evolution (e.g. fuzz testing)
+
+Use cases, users, ecosystem.
 
 ## Go repo analysis
 
@@ -64,3 +88,5 @@ From a [git-of-theseus](https://github.com/erikbern/git-of-theseus) analysis
 code age, extensions (move from [C to Go](https://go.dev/doc/go1.5#c) in 1.5):
 
 ![Various plots generated with git-of-theseus](static/theseus/stats_combined.png)
+
+
