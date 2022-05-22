@@ -52,12 +52,16 @@ $ git summary
    ...
 ```
 
-Over 2000 committers to the core project:
+Over 2000 committers to the core project (973 authors with more than single commit, 277 with more than 10 commit):
 
 ```
 $ git shortlog -s -n | wc -l
 2189
 ```
+
+From a [git-of-theseus](https://github.com/erikbern/git-of-theseus) analysis
+(as of 0a1a092c4b56a1d4033372fbd07924dad8cbb50b):
+
 ![](static/theseus/authors_norm.png)
 
 ![](static/theseus/cohorts_norm.png)
