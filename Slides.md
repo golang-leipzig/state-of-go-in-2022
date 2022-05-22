@@ -9,10 +9,10 @@ TBD.
 * Andreas Linz
 * Martin Czygan
 
-## About Us
+## About
 
 * co-hosting [Leipzig Gophers](https://golangleipzig.space/) since 2019
-* 28+ events hosted, input presentations, code walkthroughs, discussions, ...
+* 28+ events hosted, input presentations, code walkthroughs, discussions, quizzes, sponsors, ...
 * 350 members on meetup, the pandemic brought us a truly international audience
 * ...
 
@@ -23,4 +23,43 @@ TBD.
 ![](static/changes-combined.png)
 
 * not that much to see here; thanks! any questions?
+
+## Go repo analysis
+
+In fact, Go turned 50 this year.
+
+```
+$ git summary
+
+ project  : go
+ repo age : 50 years
+ active   : 4822 days
+ commits  : 52739
+ files    : 11670
+ authors  :
+  7018  Russ Cox                                                    13.3%
+  3854  Robert Griesemer                                            7.3%
+  2983  Rob Pike                                                    5.7%
+  2360  Brad Fitzpatrick                                            4.5%
+  2297  Ian Lance Taylor                                            4.4%
+  1537  Austin Clements                                             2.9%
+  1496  Josh Bleecher Snyder                                        2.8%
+  1398  Matthew Dempsky                                             2.7%
+  1319  Keith Randall                                               2.5%
+  1192  Andrew Gerrand                                              2.3%
+  1026  Cherry Zhang                                                1.9%
+   935  Bryan C. Mills                                              1.8%
+   ...
+```
+
+Over 2000 committers to the core project:
+
+```
+$ git shortlog -s -n | wc -l
+2189
+```
+![](static/theseus/authors_norm.png)
+
+![](static/theseus/cohorts_norm.png)
+
 
