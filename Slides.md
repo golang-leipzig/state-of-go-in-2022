@@ -62,8 +62,15 @@ $ git shortlog -s -n | wc -l
 From a [git-of-theseus](https://github.com/erikbern/git-of-theseus) analysis
 (as of 0a1a092c4b56a1d4033372fbd07924dad8cbb50b):
 
+Authors (top 20 plus others).
+
 ![](static/theseus/authors_norm.png)
+
+Code age over time.
 
 ![](static/theseus/cohorts_norm.png)
 
+Extensions.
+
+![](static/theseus/exts_norm.png)
 
