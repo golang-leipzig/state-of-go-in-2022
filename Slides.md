@@ -1,19 +1,19 @@
 # State of Go in 2022
 
-> What's new (since Go [1.14](https://go.dev/doc/devel/release#go1.14))?
+> What's new (since Go [1.14](https://go.dev/doc/devel/release#go1.14) 02/20)?
 
 Talk at [Leipzig Software Craft
 Meetup](https://www.meetup.com/LE-software-craft-community/), date and time:
-TBD.
+2022-06-30 19:00 CEST.
 
-* Andreas Linz
-* Martin Czygan
+* [Andreas Linz](https://github.com/klingtnet)
+* [Martin Czygan](https://github.com/miku)
 
 ## About
 
-* co-hosting [Leipzig Gophers](https://golangleipzig.space/) since 2019
-* 28+ events hosted, input presentations, code walkthroughs, discussions, quizzes, sponsors, ...
-* 350 members on meetup, the pandemic brought us a truly international audience
+* hosting [Leipzig Gophers](https://golangleipzig.space/) since [2019](https://golangleipzig.space/posts/meetup-launched/)
+* 25+ events hosted, input presentations, code walkthroughs, discussions, startups, quizzes, sponsors, ...
+* 400+ members on meetup, the pandemic brought us a truly international audience 🇮🇩 🇲 🇨🇱 🇧🇷
 * ...
 
 ![](static/leipzig-gopher.png)
