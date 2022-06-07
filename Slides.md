@@ -13,7 +13,7 @@ Meetup](https://www.meetup.com/LE-software-craft-community/), date and time:
 
 * hosting [Leipzig Gophers](https://golangleipzig.space/) since [2019](https://golangleipzig.space/posts/meetup-launched/)
 * 25+ events hosted, input presentations, code walkthroughs, discussions, startups, quizzes, sponsors, ...
-* 400+ members on meetup, the pandemic brought us a truly international audience 🇮🇩🇲🇪🇨🇱🇧🇷🇧🇾🇺🇸🇧🇪🇩🇪
+* 400+ members on meetup, the pandemic brought us a truly international audience 🇮🇩🇲🇪🇨🇱🇧🇷🇧🇾🇺🇸🇧🇪🇩🇪🇨🇳🇮🇷
 * ...
 
 ![](static/leipzig-gopher.png)
