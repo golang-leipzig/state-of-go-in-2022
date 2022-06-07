@@ -31,11 +31,12 @@ _content/doc/go1.16.html
 ```
 
 5 out of the 9 past releases (Go 1.10, 2018-02-16 to 1.18, 2022-03-15) do not
-contain any changes to the language.
+contain *any ... changes* to the language.
 
-The single biggest change to the language is the addition of generic types in
-Go 1.18. All other changes have been small enhancements (like number literals,
-changes in `unsafe`, ...).
+The single biggest change to the language is the addition of [generic
+types](https://en.wikipedia.org/wiki/Generic_programming) in Go 1.18. All other
+changes have been small enhancements (like number literals, changes in
+`unsafe`, ...).
 
 ## So, what changed?
 
@@ -46,7 +47,7 @@ We want to highlight a few changes and how they affect everyday Go development:
 * **standard library** additions: `hash/maphash` (1.14), `time/tzdata` (1.15), `embed` (1.16), `debug/buildinfo` (1.18), `net/netip` (1.18)
 * **tools** evolution (e.g. fuzz testing)
 
-Use cases, users, ecosystem.
+As well as use cases, users and **ecosystem** changes.
 
 ## Go repo analysis
 
