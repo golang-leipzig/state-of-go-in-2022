@@ -6,10 +6,9 @@ Talk at [Leipzig Software Craft
 Meetup](https://www.meetup.com/LE-software-craft-community/), date and time:
 2022-06-30 19:00 CEST.
 
-* [Andreas Linz](https://github.com/klingtnet)
-* [Martin Czygan](https://github.com/miku)
+> [Andreas Linz](https://github.com/klingtnet), [Martin Czygan](https://github.com/miku) ([LI](https://www.linkedin.com/in/martin-czygan-58348842))
 
-## About
+## Hello!
 
 * hosting [Leipzig Gophers](https://golangleipzig.space/) since [2019](https://golangleipzig.space/posts/meetup-launched/)
 * 25+ events hosted, input presentations, code walkthroughs, discussions, startups, quizzes, sponsors, ...
@@ -36,7 +35,7 @@ contain *any ... changes* to the language.
 The single biggest change to the language is the addition of [generic
 types](https://en.wikipedia.org/wiki/Generic_programming) in Go 1.18. All other
 changes have been small enhancements (like number literals, changes in
-`unsafe`, ...).
+`unsafe`, ...). Some say, we already have [Go 2](https://xeiaso.net/blog/we-have-go-2).
 
 ## So, what changed?
 
