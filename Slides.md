@@ -109,4 +109,48 @@ This list is probably no surprise for most longer term Go developers, since thos
 But, please be aware that you can come a long way without needing any dependencies just using Go's standard library!
 Also, if you need to choose a dependency make sure that it's somehow compatible with standard libraries interface's (e.g. the ubiquitous `http.Handler` or `io.Reader` and `io.Writer`).
 Onboarding new developers will be much easier then, since they don't have to learn new paradigms just to do the same thing.
-Also, it will help when needing to replace a dependency, since a bit compatibility is ensured. 
+Also, it will help when needing to replace a dependency, since a bit compatibility is ensured.
+
+## Packaging
+
+Go started with a very opinionated design choice on how to organize your code, the `$GOPATH`.
+A typical `GOPATH` looked like this:
+
+```
+~/go
+   /bin # executables installed via go get (now go install)
+   /pkg # pre-compiled libraries
+   /src
+      /company.com/a/project # a personal project
+         /.git/
+         /main.go
+         /vendor/ # contains vendored/copied dependencies
+         /...
+      /github.com/dependency/x # dependencies
+      /github.com/dependency/y
+```
+
+Developers could not use their typical `~/code` folder (or similar) to setup a Go project, instead they needed to work inside `$GOPATH/src/<project>`, which is pretty inconvenient.  There were some workarounds around this limitation, e.g. setting up repo specific GOPATH's, but this often broke tooling.
+The biggest limitation of this code organization was that you could only use one version of any dependency at a time, even across projects.
+Except dependencies were vendored, with the downside of then having huge git repositories.
+At Google this wasn't a problem since everything was stored in a big monorepo anyways, but most companies didn't work with this code organization setup.
+
+A bunch of tools were developed by the community to workaround the dependency problem, with `dep` being the most popular one.
+However, the Go team decided to work on their own concept which would then become _Go Modules_.  Modules can be used with the `go` tool and didn't require any third-party dependency but in the beginning they were not enabled by default.
+Still, adoption of Go Modules was already very high in 2019 as the following chart from [2019's developer survey results](https://go.dev/blog/survey2019-results) shows:
+
+![Adoption of Go Modules in 2019](https://go.dev/blog/survey2019/fig22.svg)
+
+With Go 1.14, released on 25th of February 2020, Modules became the default.
+Ultimately, this shows how much need there was for a fast and easy to use packaging solution.
+
+Since then the `GOPATH` is nothing to care about anymore, instead a new Go project can be setup in any folder using the following commands:
+
+```sh
+$ mkdir myproject && cd myproject
+$ go mod init myproject
+```
+
+There's also a official Go on [how to write Go code](https://go.dev/doc/code) that explains a project setup in more detail.
+
+Not only did Modules made development more convenient, they also helped to ensure reproducibility and authenticity of dependencies.  The `go` command verifies a cryptographic hash of each (public) direct and indirect dependency against a global hash sum database to ensure their authenticity.  Those checksums are what's stored inside a Modules [`go.sum` file](https://go.dev/ref/mod#go-sum-files).
