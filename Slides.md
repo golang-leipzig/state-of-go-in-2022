@@ -154,3 +154,18 @@ $ go mod init myproject
 There's also a official Go on [how to write Go code](https://go.dev/doc/code) that explains a project setup in more detail.
 
 Not only did Modules made development more convenient, they also helped to ensure reproducibility and authenticity of dependencies.  The `go` command verifies a cryptographic hash of each (public) direct and indirect dependency against a global hash sum database to ensure their authenticity.  Those checksums are what's stored inside a Modules [`go.sum` file](https://go.dev/ref/mod#go-sum-files).
+
+## Embed
+
+Deployment and distribution was always one of the strong points of Go since it can be easily (cross-) compiled into a statically linked binary that is then shipped.
+With the [`embed` package](https://pkg.go.dev/embed) there is now a standard way of bundling any number of files or directories into a binary.
+A webserver for example can be shipped as a single binary including all its assets, templates, Javascript files and so on.
+Another common usecase is to bundle SQL migration files.
+Embedding something is very easy, all it takes to embed a directory is this:
+
+```go
+//go:embed assets
+var assets embed.FS
+```
+
+Files can be directly embedded as `[]byte` or `string`.
