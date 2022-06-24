@@ -43,7 +43,7 @@ We want to highlight a few changes and how they affect everyday Go development:
 
 * move to **Go modules** for dependency management
 * introduction of **generic types**
-* **standard library** additions: `hash/maphash` (1.14), `time/tzdata` (1.15), `embed` (1.16), `debug/buildinfo` (1.18), `net/netip` (1.18)
+* **standard library** additions: [`hash/maphash`](https://pkg.go.dev/hash/maphash) (1.14), [`time/tzdata`](https://pkg.go.dev/time/tzdata) (1.15), [`embed`](https://pkg.go.dev/embed) (1.16), [`debug/buildinfo`](https://pkg.go.dev/debug/buildinfo) (1.18), [`net/netip`](https://pkg.go.dev/net/netip) (1.18)
 * **tools** evolution (e.g. fuzz testing)
 
 As well as use cases, users and **ecosystem** changes.
@@ -84,7 +84,7 @@ $ git shortlog -s -n | wc -l
 ```
 
 From a [git-of-theseus](https://github.com/erikbern/git-of-theseus) analysis
-(as of 0a1a092c4b56a1d4033372fbd07924dad8cbb50b): authors (top 20 plus others),
+(as of [0a1a092c4b56a1d4033372fbd07924dad8cbb50b](github.com/golang/go/commit/0a1a092c4b56a1d4033372fbd07924dad8cbb50b)): authors (top 20 plus others),
 code age, extensions (move from [C to Go](https://go.dev/doc/go1.5#c) in 1.5):
 
 ![Various plots generated with git-of-theseus](static/theseus/stats_combined.png)
