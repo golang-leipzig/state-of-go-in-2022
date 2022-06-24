@@ -89,4 +89,24 @@ code age, extensions (move from [C to Go](https://go.dev/doc/go1.5#c) in 1.5):
 
 ![Various plots generated with git-of-theseus](static/theseus/stats_combined.png)
 
+## Popular libraries and Frameworks
 
+Following is a list of popular frameworks and libraries, which you can take as a reference.  Of course, the most popular package is not always the best choice, but often a reliable one.
+Our method for determining what the most popular frameworks and libraries are, is to simply sort them by GitHub stars.  Go's [package search](https://pkg.go.dev/search) does not allow to sort by number of imports.
+
+Most popular:
+
+- web framework is [`gin`](https://github.com/gin-gonic/gin)
+- HTTP client is [`resty`](https://github.com/go-resty/resty)
+- HTTP router is [`gorilla/mux`](https://github.com/gorilla/mux)
+- microservice framework is [`kit`](https://github.com/go-kit/kit)
+- testing library is [`testify`](https://github.com/stretchr/testify)
+- object relational mapper is [`gorm`](https://github.com/go-gorm/gorm)
+- logging library is [`logrus`](https://github.com/sirupsen/logrus)
+
+This list is probably no surprise for most longer term Go developers, since those packages exist since quite some time and their popularity hasn't changed much.
+
+But, please be aware that you can come a long way without needing any dependencies just using Go's standard library!
+Also, if you need to choose a dependency make sure that it's somehow compatible with standard libraries interface's (e.g. the ubiquitous `http.Handler` or `io.Reader` and `io.Writer`).
+Onboarding new developers will be much easier then, since they don't have to learn new paradigms just to do the same thing.
+Also, it will help when needing to replace a dependency, since a bit compatibility is ensured. 
