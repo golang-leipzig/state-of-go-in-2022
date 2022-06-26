@@ -1,10 +1,9 @@
 # State of Go in 2022
 
-> What's new (since Go [1.14](https://go.dev/doc/devel/release#go1.14) 02/20)?
+> What's new (since Go [1.14](https://go.dev/doc/devel/release#go1.14) ~ 02/20)?
 
 Talk at [Leipzig Software Craft
-Meetup](https://www.meetup.com/LE-software-craft-community/), date and time:
-2022-06-30 19:00 CEST.
+Meetup](https://www.meetup.com/LE-software-craft-community/), [2022-06-30 19:00 CEST](https://www.meetup.com/le-software-craft-community/events/286403431/)
 
 > [Andreas Linz](https://github.com/klingtnet), [Martin Czygan](https://github.com/miku) ([LI](https://www.linkedin.com/in/martin-czygan-58348842))
 
@@ -12,7 +11,7 @@ Meetup](https://www.meetup.com/LE-software-craft-community/), date and time:
 
 * hosting [Leipzig Gophers](https://golangleipzig.space/) since [2019](https://golangleipzig.space/posts/meetup-launched/)
 * 25+ events hosted, input presentations, code walkthroughs, discussions, startups, quizzes, sponsors, ...
-* 400+ members on meetup, the pandemic brought us a truly international audience 🇮🇩🇲🇪🇨🇱🇧🇷🇧🇾🇺🇸🇧🇪🇩🇪🇨🇳🇮🇷
+* 400+ members on meetup, the pandemic brought us a truly international audience 🇮🇩🇲🇪🇨🇱🇧🇷🇧🇾🇺🇸🇧🇪🇩🇪🇨🇳🇮🇷 …
 * we have a [YouTube channel](https://www.youtube.com/channel/UCFDzViL6Bo0w2AG23Q0_rZQ) 📹
 
 ![](static/leipzig-gopher.png)
@@ -88,6 +87,187 @@ From a [git-of-theseus](https://github.com/erikbern/git-of-theseus) analysis
 code age, extensions (move from [C to Go](https://go.dev/doc/go1.5#c) in 1.5):
 
 ![Various plots generated with git-of-theseus](static/theseus/stats_combined.png)
+
+## Generics
+
+Or: [parametric polymorphism](https://en.wikipedia.org/wiki/Parametric_polymorphism)
+
+Relevant proposal:
+
+* [43651](https://github.com/golang/proposal/blob/master/design/43651-type-parameters.md) (2021, accepted)
+
+Previous discussion:
+
+> Go should support some form of generic programming.
+Generic programming enables the representation of algorithms and data
+structures in a generic form, with concrete elements of the code (such as
+types) factored out. It means the ability to express algorithms with minimal
+assumptions about data structures, and vice-versa.
+
+[...]
+
+> Generics permit type-safe polymorphic containers. Go currently has a very
+> limited set of such containers: slices, and maps of most but not all types.
+> Not every program can be written using a slice or map.
+
+> Look at the functions SortInts, SortFloats, SortStrings in the sort package.
+> Or SearchInts, SearchFloats, SearchStrings. Or the Len, Less, and Swap
+> methods of byName in package io/ioutil. **Pure boilerplate copying**.
+
+Who wrote that? [...] [Proposal: Go should have generics](https://github.com/golang/proposal/blob/master/design/15292-generics.md) (2011)
+
+A few more:
+
+> As Russ pointed out, **generics are a trade off between programmer time, compilation time, and execution time.**
+
+### Key Ideas
+
+* Functions and types can have **type parameters**, which are defined using **constraints**, which are **interface types**.
+* Constraints describe the **methods required** and the **types permitted** for a type argument.
+* Constraints describe the methods and operations permitted for a type parameter.
+* **Type inference** will often permit omitting type arguments when calling functions with type parameters.
+
+> This design is completely backward compatible.
+
+There are many things Go Generics do not support: No metaprogramming (macros);
+no operator methods (e.g. no syntax like `c[i]` for custom types); no
+[covariance or contravariance](https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science)) of function parameters; ...
+
+
+### Notable changes
+
+* `any` (alias for `interface{}`, [operations
+permitted](https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md#operations-permitted-for-any-type))
+and `comparable` as [predeclared
+identifiers](https://go.dev/ref/spec#Predeclared_identifiers)
+* a new [contraints](https://pkg.go.dev/golang.org/x/exp/constraints) package,
+not in the standard library yet (but in
+[exp](https://pkg.go.dev/golang.org/x/exp#section-readme), *In short, code in
+this subrepository is not subject to the Go 1 compatibility promise.*)
+
+### Examples
+
+#### Basic
+
+* [https://go.dev/play/p/MM38gRuTRKB](https://go.dev/play/p/MM38gRuTRKB)
+
+```go
+// Dummy example, showing contraints as interface type and type parameters.
+
+type Number interface {
+    int | int64 | float64
+}
+
+func Min[Number T](u, v T) T {
+    if u < v {
+        return u
+    }
+    return v
+}
+```
+
+#### Constraints and Methods
+
+* [https://go.dev/play/p/HsJtEJnzJdl](https://go.dev/play/p/HsJtEJnzJdl)
+
+```go
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import "fmt"
+
+type Number interface {
+	~int | ~int64 | ~float64
+	String() string
+}
+
+func Min[T Number](u, v T) T {
+	if u < v {
+		return u
+	}
+	return v
+}
+
+type MyInt int
+
+func (i MyInt) String() string {
+	return fmt.Sprintf("[%d]", i)
+}
+
+func main() {
+	r := Min(MyInt(3), MyInt(4))
+	fmt.Printf("%v %T", r, r)
+	// 3 int
+}
+```
+
+#### Set
+
+```go
+// Package sets implements sets of any comparable type.
+package sets
+
+// Set is a set of values.
+type Set[T comparable] map[T]struct{}
+
+// Make returns a set of some element type.
+func Make[T comparable]() Set[T] {
+    return make(Set[T])
+}
+
+// Add adds v to the set s.
+// If v is already in s this has no effect.
+func (s Set[T]) Add(v T) {
+    s[v] = struct{}{}
+}
+
+// Delete removes v from the set s.
+// If v is not in s this has no effect.
+func (s Set[T]) Delete(v T) {
+    delete(s, v)
+}
+
+// Contains reports whether v is in s.
+func (s Set[T]) Contains(v T) bool {
+    _, ok := s[v]
+    return ok
+}
+```
+
+#### Dot Product
+
+```go
+// Numeric is a constraint that matches any numeric type.
+// It would likely be in a constraints package in the standard library.
+type Numeric interface {
+    ~int | ~int8 | ~int16 | ~int32 | ~int64 |
+        ~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uintptr |
+        ~float32 | ~float64 |
+        ~complex64 | ~complex128
+}
+
+// DotProduct returns the dot product of two slices.
+// This panics if the two slices are not the same length.
+func DotProduct[T Numeric](s1, s2 []T) T {
+    if len(s1) != len(s2) {
+        panic("DotProduct: slices of unequal length")
+    }
+    var r T
+    for i := range s1 {
+        r += s1[i] * s2[i]
+    }
+    return r
+}
+```
+
+### Summary
+
+...
+
+
+
+
 
 ## Popular libraries and Frameworks
 
