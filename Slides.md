@@ -266,8 +266,38 @@ func DotProduct[T Numeric](s1, s2 []T) T {
 ...
 
 
+### Testing
 
+Testing hasn't changed much, except the addition of fuzz testing.
+But, some utility methods were added to the already great standard library testing library.
+Below is an example that uses `t.Cleanup` as well as `t.SetEnv` which were added with Go 1.14 and 1.17:
 
+```go
+package main
+
+import (
+	"os"
+	"testing"
+)
+
+func TestDemonstrateAdditions(t *testing.T) {
+	err := os.WriteFile("./test.json", []byte(`{"foo": "bar"}`), 0o600)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	// Cleanup will be called when test finishes, i.e. if it has failed or succeeded.
+	defer t.Cleanup(func() {
+		t.Log("called")
+		os.Remove("./test.json")
+	})
+
+	// This will be unset automatically after test finishes.
+	t.Setenv("USERNAME", "andreas")
+	
+	// ...
+}
+
+```
 
 ## Popular libraries and Frameworks
 
