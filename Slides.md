@@ -42,7 +42,7 @@ We want to highlight a few changes and how they affect everyday Go development:
 
 * move to **Go modules** for dependency management
 * introduction of **generic types**
-* **standard library** additions: [`hash/maphash`](https://pkg.go.dev/hash/maphash) (1.14), [`time/tzdata`](https://pkg.go.dev/time/tzdata) (1.15), [`embed`](https://pkg.go.dev/embed) (1.16), [`debug/buildinfo`](https://pkg.go.dev/debug/buildinfo) (1.18), [`net/netip`](https://pkg.go.dev/net/netip) (1.18)
+* **standard library** additions: [`hash/maphash`](https://pkg.go.dev/hash/maphash) (1.14), [`testing/Cleanup`](https://pkg.go.dev/testing#T.Cleanup), [`time/tzdata`](https://pkg.go.dev/time/tzdata) (1.15), [`embed`](https://pkg.go.dev/embed) (1.16), [`testing/SetEnv`](https://pkg.go.dev/testing#T.Cleanup), [`debug/buildinfo`](https://pkg.go.dev/debug/buildinfo) (1.18), [`net/netip`](https://pkg.go.dev/net/netip) (1.18)
 * **tools** evolution (e.g. fuzz testing)
 
 As well as use cases, users and **ecosystem** changes.
