@@ -330,7 +330,24 @@ func DotProduct[T Numeric](s1, s2 []T) T {
 
 ### Summary
 
-...
+* basic generic programming support
+* libraries already on the way: [https://github.com/samber/lo](https://github.com/samber/lo), [https://github.com/elliotchance/pie](https://github.com/elliotchance/pie)
+
+Examples:
+
+```go
+names := lo.Uniq([]string{"Samuel", "Marc", "Samuel"})
+```
+
+Calculating an average or finding the mode:
+
+* [https://pkg.go.dev/github.com/elliotchance/pie/v2#Average](https://pkg.go.dev/github.com/elliotchance/pie/v2#Average)
+* [https://pkg.go.dev/github.com/elliotchance/pie/v2#Mode](https://pkg.go.dev/github.com/elliotchance/pie/v2#Mode)
+
+And more. Functional programming gets more realistic in Go:
+
+* [https://pkg.go.dev/github.com/samber/mo#Either](https://pkg.go.dev/github.com/samber/mo#Either)
+* [https://github.com/nikgalushko/fx](https://github.com/nikgalushko/fx)
 
 
 ### Performance
