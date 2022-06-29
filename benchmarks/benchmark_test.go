@@ -30,7 +30,6 @@ func BenchmarkImageResizing(b *testing.B) {
 
 	// We cannot use io.Discard here since this was moved with Go 1.16 from ioutil into io.
 	w := ioutil.Discard
-	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		m := resize.Resize(1000, 1000, img, resize.Lanczos3)

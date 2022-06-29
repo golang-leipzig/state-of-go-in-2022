@@ -270,27 +270,33 @@ func DotProduct[T Numeric](s1, s2 []T) T {
 
 Following is a list of benchmark results where a large PNG image was resized to simulate a CPU heavy task.
 
+The benchmark output format is:
+
+```
+<benchmark name>-<#cpu cores> <#iterations>
+```
+
 ```sh
 Benchmarking Go 1.9
-BenchmarkImageResizing-4              10         160599945 ns/op        24980022 B/op    2000062 allocs/op
+BenchmarkImageResizing-4              10         163782608 ns/op
 Benchmarking Go 1.10
-BenchmarkImageResizing-4              10         160543904 ns/op        24979598 B/op    2000061 allocs/op
+BenchmarkImageResizing-4              10         163757441 ns/op
 Benchmarking Go 1.11
-BenchmarkImageResizing-4              10         151276971 ns/op        24979592 B/op    2000061 allocs/op
+BenchmarkImageResizing-4              10         152210837 ns/op
 Benchmarking Go 1.12
-BenchmarkImageResizing-4              10         147941091 ns/op        24979497 B/op    2000060 allocs/op
+BenchmarkImageResizing-4              10         150075912 ns/op
 Benchmarking Go 1.13
-BenchmarkImageResizing-4               7         152139173 ns/op        24980045 B/op    2000061 allocs/op
+BenchmarkImageResizing-4               7         147810024 ns/op
 Benchmarking Go 1.14
-BenchmarkImageResizing-4               8         141062901 ns/op        24979607 B/op    2000061 allocs/op
+BenchmarkImageResizing-4               8         144512630 ns/op
 Benchmarking Go 1.15
-BenchmarkImageResizing-4               8         141748698 ns/op        24979572 B/op    2000061 allocs/op
+BenchmarkImageResizing-4               7         145425970 ns/op
 Benchmarking Go 1.16
-BenchmarkImageResizing-4               8         141571636 ns/op        24979836 B/op    2000061 allocs/op
+BenchmarkImageResizing-4               8         143349766 ns/op
 Benchmarking Go 1.17
-BenchmarkImageResizing-4               8         140938354 ns/op        24979598 B/op    2000061 allocs/op
+BenchmarkImageResizing-4               7         143322845 ns/op
 Benchmarking Go 1.18
-BenchmarkImageResizing-4               8         127641307 ns/op        24980558 B/op    2000070 allocs/op
+BenchmarkImageResizing-4               8         144787594 ns/o
 ```
 
 CPU intensive tasks are consistently getting faster resulting in a 25% speedup compared to Go 1.9.
