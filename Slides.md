@@ -376,6 +376,9 @@ Embedding something is very easy, all it takes to embed a directory is this:
 ```go
 //go:embed assets
 var assets embed.FS
+
+// Here's how to serve this directory from an HTTP server:
+router.Handle("/assets/", http.FileServer(http.FS(assets)))
 ```
 
-Files can be directly embedded as `[]byte` or `string`.
+Individual files can be directly embedded as `[]byte` or `string`.
