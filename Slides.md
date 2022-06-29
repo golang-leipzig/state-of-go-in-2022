@@ -299,15 +299,18 @@ Benchmarking Go 1.18
 BenchmarkImageResizing-4               8         144787594 ns/o
 ```
 
-CPU intensive tasks are consistently getting faster resulting in a 25% speedup compared to Go 1.9.
-Go 1.11 included [big improvements for `arm64` targets](https://go.dev/doc/go1.11#performance).
-With Go 1.18 [register based calling convention](https://go.googlesource.com/proposal/+/refs/changes/78/248178/1/design/40724-register-calling.md) was applied for ARM targets, which resulted in a another major speedup.
+CPU intensive tasks are consistently getting faster with each Go release.
+Overall we see a 25% speedup with the latest Go release compared to Go 1.9.
+
+- Go 1.11 included [big improvements for `arm64` targets](https://go.dev/doc/go1.11#performance).
+- Go 1.18 [register based calling convention](https://go.googlesource.com/proposal/+/refs/changes/78/248178/1/design/40724-register-calling.md) was applied for ARM targets.
 
 ### Testing
 
-Testing hasn't changed much, except the addition of fuzz testing.
-But, some utility methods were added to the already great standard library testing library.
-Below is an example that uses `t.Cleanup` as well as `t.SetEnv` which were added with Go 1.14 and 1.17:
+Testing hasn't changed much, except the addition of [fuzz testing](https://go.dev/doc/tutorial/fuzz).
+
+But, some utility methods were added to the already great `testing` library.
+Below is an example that uses `t.Cleanup` as well as `t.SetEnv`, which were added with Go 1.14 and 1.17:
 
 ```go
 package main
@@ -339,6 +342,7 @@ func TestDemonstrateAdditions(t *testing.T) {
 ## Popular libraries and Frameworks
 
 Following is a list of popular frameworks and libraries, which you can take as a reference.  Of course, the most popular package is not always the best choice, but often a reliable one.
+
 Our method for determining what the most popular frameworks and libraries are, is to simply sort them by GitHub stars.  Go's [package search](https://pkg.go.dev/search) does not allow to sort by number of imports.
 
 Most popular:
@@ -353,10 +357,12 @@ Most popular:
 
 This list is probably no surprise for most longer term Go developers, since those packages exist since quite some time and their popularity hasn't changed much.
 
-But, please be aware that you can come a long way without needing any dependencies just using Go's standard library!
+But, please be aware that you can come a long way without needing any third party dependencies!
+
 Also, if you need to choose a dependency make sure that it's somehow compatible with standard libraries interface's (e.g. the ubiquitous `http.Handler` or `io.Reader` and `io.Writer`).
+
 Onboarding new developers will be much easier then, since they don't have to learn new paradigms just to do the same thing.
-Also, it will help when needing to replace a dependency, since a bit compatibility is ensured.
+Also, it will help when needing to replace a dependency, since a bit of compatibility is guaranteed.
 
 ## Packaging
 
@@ -377,13 +383,20 @@ A typical `GOPATH` looked like this:
       /github.com/dependency/y
 ```
 
-Developers could not use their typical `~/code` folder (or similar) to setup a Go project, instead they needed to work inside `$GOPATH/src/<project>`, which is pretty inconvenient.  There were some workarounds around this limitation, e.g. setting up repo specific GOPATH's, but this often broke tooling.
-The biggest limitation of this code organization was that you could only use one version of any dependency at a time, even across projects.
-Except dependencies were vendored, with the downside of then having huge git repositories.
+Developers could not use their typical `~/code` folder (or similar) to setup a Go project.
+
+Instead they needed to work inside `$GOPATH/src/<import-path>`, which is pretty inconvenient.  There were some workarounds around this limitation, e.g. setting up repo specific GOPATH's, but this often broke tooling.
+
+The biggest limitation of this code organization was, that you could only use one version of any dependency at a time, even across projects.
+
+Except, dependencies were vendored.  But, this resulted often in huge git repositories.
+
 At Google this wasn't a problem since everything was stored in a big monorepo anyways, but most companies didn't work with this code organization setup.
 
 A bunch of tools were developed by the community to workaround the dependency problem, with `dep` being the most popular one.
-However, the Go team decided to work on their own concept which would then become _Go Modules_.  Modules can be used with the `go` tool and didn't require any third-party dependency but in the beginning they were not enabled by default.
+
+However, the Go team decided to work on their own concept which would then become _Go Modules_.  Modules can be used with the `go` tool and don't require any third-party dependency but in the beginning they were not enabled by default.
+
 Still, adoption of Go Modules was already very high in 2019 as the following chart from [2019's developer survey results](https://go.dev/blog/survey2019-results) shows:
 
 ![Adoption of Go Modules in 2019](https://go.dev/blog/survey2019/fig22.svg)
@@ -398,15 +411,20 @@ $ mkdir myproject && cd myproject
 $ go mod init myproject
 ```
 
-There's also a official Go on [how to write Go code](https://go.dev/doc/code) that explains a project setup in more detail.
+There's also a official tutorial on [how to write Go code](https://go.dev/doc/code) that explains a project setup in more detail.
 
-Not only did Modules made development more convenient, they also helped to ensure reproducibility and authenticity of dependencies.  The `go` command verifies a cryptographic hash of each (public) direct and indirect dependency against a global hash sum database to ensure their authenticity.  Those checksums are what's stored inside a Modules [`go.sum` file](https://go.dev/ref/mod#go-sum-files).
+Not only did Modules made development more convenient, they also helped to ensure reproducibility and authenticity of dependencies.
+
+The `go` command verifies a cryptographic hash of each (public) direct and indirect dependency against a global hash sum database to ensure their authenticity.  Those checksums are what's stored inside a Modules [`go.sum` file](https://go.dev/ref/mod#go-sum-files).
 
 ## Embed
 
 Deployment and distribution was always one of the strong points of Go since it can be easily (cross-) compiled into a statically linked binary that is then shipped.
+
 With the [`embed` package](https://pkg.go.dev/embed) there is now a standard way of bundling any number of files or directories into a binary.
+
 A webserver for example can be shipped as a single binary including all its assets, templates, Javascript files and so on.
+
 Another common usecase is to bundle SQL migration files.
 Embedding something is very easy, all it takes to embed a directory is this:
 
