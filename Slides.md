@@ -7,7 +7,7 @@ Meetup](https://www.meetup.com/LE-software-craft-community/), [2022-06-30 19:00 
 
 > [Andreas Linz](https://github.com/klingtnet), [Martin Czygan](https://github.com/miku) ([LI](https://www.linkedin.com/in/martin-czygan-58348842))
 
-## Hello!
+## Hello 世界!
 
 * hosting [Leipzig Gophers](https://golangleipzig.space/) since [2019](https://golangleipzig.space/posts/meetup-launched/)
 * 25+ events hosted, input presentations, code walkthroughs, discussions, startups, quizzes, sponsors, ...
@@ -400,7 +400,7 @@ func TestDemonstrateAdditions(t *testing.T) {
 
 	// This will be unset automatically after test finishes.
 	t.Setenv("USERNAME", "andreas")
-	
+
 	// ...
 }
 
