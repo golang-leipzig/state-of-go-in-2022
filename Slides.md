@@ -349,6 +349,13 @@ And more. Functional programming gets more realistic in Go:
 * [https://pkg.go.dev/github.com/samber/mo#Either](https://pkg.go.dev/github.com/samber/mo#Either)
 * [https://github.com/nikgalushko/fx](https://github.com/nikgalushko/fx)
 
+Generic concurrency patterns:
+
+* [https://github.com/lobocv/simpleflow](https://github.com/lobocv/simpleflow)
+
+We'll see more of these this year; standard library may get some generic
+support for slices and maps (like map keys, etc).
+
 
 ### Performance
 
