@@ -145,9 +145,76 @@ not in the standard library yet (but in
 [exp](https://pkg.go.dev/golang.org/x/exp#section-readme), *In short, code in
 this subrepository is not subject to the Go 1 compatibility promise.*)
 
+### Syntax
+
+```
+func G[T Constraint](p T) { }
+```
+
+* contraint may be `any` ~ `interface{}` or `comparable` or an interface with methods and
+
+### Other Bits
+
+* interfaces allow to capture common behaviour
+
+> In other words, interface types in Go are a form of generic programming. They
+> let us capture the common aspects of different types and express them as
+> methods. -- [Go generic programming today](https://go.dev/blog/why-generics)
+
+There is a container package in the standard library, not widely used:
+
+* [https://pkg.go.dev/container/list@go1.18.3](https://pkg.go.dev/container/list@go1.18.3)
+
+> the Go standard library package container is mostly unused. Everything in the
+> container package deals with interface{}/any values, which is Go for
+> "literally anything". -- [We have Go 2](https://xeiaso.net/blog/we-have-go-2)
+
 ### Examples
 
-#### Basic
+
+#### Reverse
+
+Finally, we can write a generic reverse for slices of **any** type.
+
+* [https://go.dev/play/p/LDdnZMiQN6b](https://go.dev/play/p/LDdnZMiQN6b)
+
+```go
+package main
+
+import "fmt"
+
+// Reverse returns a new slice, with elements in reverse order.
+func Reverse[T any](vs []T) []T {
+    var (
+        n      = len(vs)
+        result = make([]T, n)
+    )
+    for i, v := range vs {
+        result[n-1-i] = v
+    }
+    return result
+}
+
+func main() {
+    var (
+        s  = []string{"a", "b", "c"}
+        i  = []int{1, 2, 3}
+        f  = []float64{1, 2, 3}
+        rs = Reverse(s)
+        ri = Reverse(i)
+        rf = Reverse(f)
+    )
+    fmt.Printf("%v %T\n", rs, rs)
+    fmt.Printf("%v %T\n", ri, ri)
+    fmt.Printf("%v %T\n", rf, rf)
+    // [c b a] []string
+    // [3 2 1] []int
+    // [3 2 1] []float64
+}
+```
+
+
+#### Interface Constraint
 
 * [https://go.dev/play/p/MM38gRuTRKB](https://go.dev/play/p/MM38gRuTRKB)
 
