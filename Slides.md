@@ -508,25 +508,25 @@ The benchmark output format is:
 
 ```sh
 Benchmarking Go 1.9
-BenchmarkImageResizing-4              10         163782608 ns/op
+BenchmarkImageResizing-4              10         162645758 ns/op
 Benchmarking Go 1.10
-BenchmarkImageResizing-4              10         163757441 ns/op
+BenchmarkImageResizing-4              10         161542379 ns/op
 Benchmarking Go 1.11
-BenchmarkImageResizing-4              10         152210837 ns/op
+BenchmarkImageResizing-4              10         151867950 ns/op
 Benchmarking Go 1.12
-BenchmarkImageResizing-4              10         150075912 ns/op
+BenchmarkImageResizing-4              10         145375775 ns/op
 Benchmarking Go 1.13
-BenchmarkImageResizing-4               7         147810024 ns/op
+BenchmarkImageResizing-4               7         149602369 ns/op
 Benchmarking Go 1.14
-BenchmarkImageResizing-4               8         144512630 ns/op
+BenchmarkImageResizing-4               7         144319423 ns/op
 Benchmarking Go 1.15
-BenchmarkImageResizing-4               7         145425970 ns/op
+BenchmarkImageResizing-4               7         143604268 ns/op
 Benchmarking Go 1.16
-BenchmarkImageResizing-4               8         143349766 ns/op
+BenchmarkImageResizing-4               8         140225932 ns/op
 Benchmarking Go 1.17
-BenchmarkImageResizing-4               7         143322845 ns/op
+BenchmarkImageResizing-4               8         141211938 ns/op
 Benchmarking Go 1.18
-BenchmarkImageResizing-4               8         144787594 ns/o
+BenchmarkImageResizing-4               8         129669589 ns/op
 ```
 
 CPU intensive tasks are consistently getting faster with each Go release.
