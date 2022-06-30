@@ -625,7 +625,7 @@ At Google this wasn't a problem since everything was stored in a big monorepo an
 
 A bunch of tools were developed by the community to workaround the dependency problem, with `dep` being the most popular one.
 
-However, the Go team decided to work on their own concept which would then become _Go Modules_.  Modules can be used with the `go` tool and don't require any third-party dependency but in the beginning they were not enabled by default.
+However, the Go team decided to work on their own concept which would then become _Go Modules_.  Modules can be used with the `go` tool and don't require any third-party tool but in the beginning they were not enabled by default.
 
 Still, adoption of Go Modules was already very high in 2019 as the following chart from [2019's developer survey results](https://go.dev/blog/survey2019-results) shows:
 
