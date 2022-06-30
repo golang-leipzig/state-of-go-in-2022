@@ -533,7 +533,7 @@ CPU intensive tasks are consistently getting faster with each Go release.
 Overall we see a 25% speedup with the latest Go release compared to Go 1.9.
 
 - Go 1.11 included [big improvements for `arm64` targets](https://go.dev/doc/go1.11#performance).
-- Go 1.18 [register based calling convention](https://go.googlesource.com/proposal/+/refs/changes/78/248178/1/design/40724-register-calling.md) was applied for ARM targets.
+- Go 1.18 applied [register based calling convention](https://go.googlesource.com/proposal/+/refs/changes/78/248178/1/design/40724-register-calling.md) for ARM targets.
 
 ### Testing
 
