@@ -328,6 +328,7 @@ func DotProduct[T Numeric](s1, s2 []T) T {
 }
 ```
 
+
 ### Summary
 
 * basic generic programming support
@@ -348,6 +349,10 @@ And more. Functional programming gets more realistic in Go:
 
 * [https://pkg.go.dev/github.com/samber/mo#Either](https://pkg.go.dev/github.com/samber/mo#Either)
 * [https://github.com/nikgalushko/fx](https://github.com/nikgalushko/fx)
+
+Generic data structures:
+
+* [https://github.com/zyedidia/generic](https://github.com/zyedidia/generic)
 
 Generic concurrency patterns:
 
