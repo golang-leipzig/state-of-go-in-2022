@@ -42,7 +42,14 @@ We want to highlight a few changes and how they affect everyday Go development:
 
 * move to **Go modules** for dependency management
 * introduction of **generic types**
-* **standard library** additions: [`hash/maphash`](https://pkg.go.dev/hash/maphash) (1.14), [`testing/Cleanup`](https://pkg.go.dev/testing#T.Cleanup), [`time/tzdata`](https://pkg.go.dev/time/tzdata) (1.15), [`embed`](https://pkg.go.dev/embed) (1.16), [`testing/SetEnv`](https://pkg.go.dev/testing#T.Cleanup), [`debug/buildinfo`](https://pkg.go.dev/debug/buildinfo) (1.18), [`net/netip`](https://pkg.go.dev/net/netip) (1.18)
+* **standard library** additions:
+  [`hash/maphash`](https://pkg.go.dev/hash/maphash) (1.14),
+[`testing/Cleanup`](https://pkg.go.dev/testing#T.Cleanup),
+[`time/tzdata`](https://pkg.go.dev/time/tzdata) (1.15),
+[`embed`](https://pkg.go.dev/embed) (1.16),
+[`testing/SetEnv`](https://pkg.go.dev/testing#T.Setenv),
+[`debug/buildinfo`](https://pkg.go.dev/debug/buildinfo) (1.18),
+[`net/netip`](https://pkg.go.dev/net/netip) (1.18)
 * **tools** evolution (e.g. fuzz testing)
 
 As well as use cases, users and **ecosystem** changes.
@@ -87,6 +94,133 @@ From a [git-of-theseus](https://github.com/erikbern/git-of-theseus) analysis
 code age, extensions (move from [C to Go](https://go.dev/doc/go1.5#c) in 1.5):
 
 ![Various plots generated with git-of-theseus](static/theseus/stats_combined.png)
+
+## More stats
+
+Using [mergestat]() for git repo analysis:
+
+```
+$ mergestat -f tsv -r . "SELECT commits.hash, stats.* FROM commits, stats('', commits.hash)" > commts.tsv
+```
+
+Drop into pydata:
+
+> Commits per year
+
+```
+In [37]: df.groupby(df.date.dt.year)["hash"].nunique()
+Out[37]:
+date
+1972       1
+1974       1
+1988       2
+2008    1396
+2009    3116
+2010    2501
+2011    3994
+2012    3754
+2013    3378
+2014    3343
+2015    4784
+2016    4803
+2017    4258
+2018    3887
+2019    3392
+2020    3989
+2021    4825
+2022    1508
+Name: hash, dtype: int64
+```
+
+> Top 5 files changed per year (2018-2022)
+
+```python
+>>> df.groupby(df.date.dt.year)["dir"].value_counts().sort_values().to_csv("dirfreq.csv")
+```
+
+```csv
+2018,src/cmd/compile/internal/ssa,854
+2018,src/cmd/vendor/golang.org/x/sys/unix,881
+2018,src/syscall,914
+2018,src/cmd/compile/internal/gc,1174
+2018,src/runtime,2258
+
+2019,src/cmd/compile/internal/ssa,753
+2019,src/cmd/compile/internal/gc,877
+2019,src/cmd/go/testdata/script,1078
+2019,src/vendor/golang.org/x/sys/unix,1106
+2019,src/runtime,2727
+
+2020,src/cmd/compile/internal/ssa,1475
+2020,src/cmd/vendor/golang.org/x/sys/unix,1883
+2020,src/cmd/go/testdata/script,2199
+2020,src/cmd/compile/internal/gc,2488
+2020,src/runtime,2835
+
+2021,src/cmd/compile/internal/types2,2085
+2021,src/cmd/go/testdata/script,2094
+2021,src/go/types,2159
+2021,src/cmd/vendor/golang.org/x/sys/unix,2476
+2021,src/runtime,5202
+
+2022,src/cmd/compile/internal/types2,516
+2022,src/go/types,530
+2022,src/go/types/testdata/fixedbugs,646
+2022,test/typeparam,663
+2022,src/runtime,1143
+```
+
+Most changes (dir):
+
+```
+$ cat changes.tsv | tail -20 | column -t
+src/cmd/go/internal/modload                  52171   26710   78881
+src/cmd/compile/internal/ir                  60114   23182   83296
+src/cmd/oldlink/internal/ld                  27955   59698   87653
+src/cmd/vendor/golang.org/x/arch/x86/x86asm  44218   48632   92850
+src/cmd/compile/internal/typecheck           75263   23292   98555
+src/crypto/tls/testdata                      56391   55537   111928
+src/cmd/compile/internal/ssa/gen             66771   56927   123698
+src/cmd/compile/internal/noder               106658  24330   130988
+src/cmd/go/testdata/script                   124204  14609   138813
+src/cmd/link/internal/ld                     79214   60428   139642
+src/go/types                                 102641  54215   156856
+src/cmd/compile/internal/types2              147363  44516   191879
+src/syscall                                  120857  83241   204098
+doc                                          45680   201068  246748
+src/cmd/compile/internal/gc                  100028  284737  384765
+src/runtime                                  279826  136985  416811
+src/time/tzdata                              229072  213100  442172
+src/vendor/golang.org/x/sys/unix             408978  445375  854353
+src/cmd/vendor/golang.org/x/sys/unix         411688  540942  952630
+src/cmd/compile/internal/ssa                 736274  990519  1726793
+```
+
+A few other packages as comparison:
+
+```
+$ cat changes.tsv | grep -E "(src/io|src/net|src/os)" | sort -nrk4,4 | head -20 | column -t
+src/net/http                 28520  11507  40027
+src/net                      20462  10633  31095
+src/os                       18546  6748   25294
+src/net/netip                9808   318    10126
+src/io/fs                    6054   507    6561
+src/os/exec                  3966   2352   6318
+src/os/signal                3603   1204   4807
+src/net/http/httputil        3231   549    3780
+src/net/url                  2609   919    3528
+src/io/ioutil                1020   1247   2267
+src/os/user                  1273   660    1933
+src/io                       1206   386    1592
+src/net/http/cgi             1045   546    1591
+src/net/http/pprof           1121   250    1371
+src/net/mail                 986    118    1104
+src/net/http/httptest        862    200    1062
+src/net/http/fcgi            695    189    884
+src/net/smtp                 752    71     823
+src/net/http/internal/ascii  780    0      780
+src/net/textproto            509    268    777
+```
 
 ## Generics
 
@@ -533,3 +667,4 @@ router.Handle("/assets/", http.FileServer(http.FS(assets)))
 ```
 
 Individual files can be directly embedded as `[]byte` or `string`.
+
